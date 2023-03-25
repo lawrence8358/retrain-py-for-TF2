@@ -116,6 +116,10 @@ if __name__ == "__main__":
     output_layer = args.output_layer
 
   graph = load_graph(model_file)
+
+  # RuntimeError: The Session graph is empty. Add operations to the graph before calling run(). 报错解决方法
+  # https://www.cnblogs.com/zlc364624/p/12572916.html
+  tf.compat.v1.disable_eager_execution() 
   t = read_tensor_from_image_file(
       file_name,
       input_height=input_height,
